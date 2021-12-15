@@ -36,15 +36,26 @@ namespace Lab_3
                 _matrix = new int[row, column];
                 dataGrid.ItemsSource = VisualArray.ToDataTable(_matrix).DefaultView;
             }
+            else
+            {
+                MessageBox.Show("Данные введены неверно");
+            }
         }
 
         private void Заполнить_Click(object sender, RoutedEventArgs e)
         {
-            if (Int32.TryParse(diapazon.Text, out int diapazon1) == true && Int32.TryParse(столбец.Text, out int column) == true && Int32.TryParse(строк.Text, out int row) == true)
+            try 
             {
+                int diapazon1 = Convert.ToInt32(diapazon.Text);
+                int column = Convert.ToInt32(столбец.Text);
+                int row = Convert.ToInt32(строк.Text);
                 _matrix = new int[row, column];
                 ArrayOperation.FillArrayRandom(_matrix, diapazon1);
                 dataGrid.ItemsSource = VisualArray.ToDataTable(_matrix).DefaultView;
+            }
+            catch
+            {
+                MessageBox.Show("Данные ведены неверно");
             }
         }
 
